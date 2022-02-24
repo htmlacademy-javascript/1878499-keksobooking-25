@@ -8,9 +8,9 @@ function getRandomInRange(minNumber, maxNumber) {
 getRandomInRange(0, 6);
 
 
-function returnRandomNum(minNumber, maxNumber, numOfDecimalPlaces) {
+function generateRandomNum(minNumber, maxNumber, numOfDecimalPlaces) {
   const range = (maxNumber - minNumber);
   return (minNumber >= 0 && maxNumber >= minNumber) ?
     Number ( Math.random(range) + 1 / Math.pow(10, numOfDecimalPlaces + 1)).toFixed(numOfDecimalPlaces) : 'Invalid Input Parameters';
 }
-returnRandomNum(1.1, 1.2, 3);
+generateRandomNum(1.1, 1.2, 3);
