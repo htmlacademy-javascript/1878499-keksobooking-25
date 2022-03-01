@@ -16,5 +16,5 @@ const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces=4) => {
   throw new Error('Invalid Input Parameters');
 };
 
-generateRandomRange(1.2, 1.9,);
+generateRandomRange(1.2, 1.9);
 
