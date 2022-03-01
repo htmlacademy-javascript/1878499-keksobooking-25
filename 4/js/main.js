@@ -1,16 +1,20 @@
-function getRandomInRange(minNumber, maxNumber) {
+const getRandomInRan = (minNumber,maxNumber) => {
   if (minNumber >= 0 && maxNumber >= minNumber) {
     return Math.round(Math.random() * (maxNumber - minNumber)) + minNumber;
-  } else {
-    throw new Error('Invalid Input Parameters');
   }
-}
-getRandomInRange(0, 6);
+  throw new Error('Invalid Input Parameters');
+};
+getRandomInRan(1,6);
 
 
-function generateRandomNum(minNumber, maxNumber, numOfDecimalPlaces) {
-  const range = (maxNumber - minNumber);
-  return (minNumber >= 0 && maxNumber >= minNumber) ?
-    Number ( Math.random(range) + 1 / Math.pow(10, numOfDecimalPlaces + 1)).toFixed(numOfDecimalPlaces) : 'Invalid Input Parameters';
-}
-generateRandomNum(1.1, 1.2, 3);
+const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces=4) => {
+  if (minNumber >= 0 && maxNumber >= minNumber) {
+    const range = Math.random() * (maxNumber - minNumber) + minNumber;
+    const result = (Number((range) / Math.pow(1, +1)));
+    return +result.toFixed(numOfDecimalPlaces);
+  }
+  throw new Error('Invalid Input Parameters');
+};
+
+generateRandomRange(1.2, 1.9,);
+
