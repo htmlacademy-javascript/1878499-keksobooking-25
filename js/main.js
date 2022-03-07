@@ -20,7 +20,6 @@ lat, число с плавающей точкой — широта, случа�
 lng, число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000.*/
 
 const OFFERS_AMOUNT = 10;
-const MIN_DESCRIPTION_WORDS = 4;
 const MAX_PRICE = 5000;
 const MAX_ROOMS = 5;
 const MAX_GUESTS = 5;
@@ -31,7 +30,7 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg','https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 const LAT_RANGE = [35.65000, 35.70000];
 const LNG_RANGE = [139.70000, 139.80000];
-const DESCRIPTION_STRING = 'Angelheaded hipsters burning for the ancient heavenly connection to the starry dynamo in the machinery of the night.';
+const DESCRIPTION = ['one','two','three'];
 
 
 const getRandomInRan = (minNumber, maxNumber) => {
@@ -41,7 +40,6 @@ const getRandomInRan = (minNumber, maxNumber) => {
   }
   throw new Error('Invalid Input Parameters');
 };
-getRandomInRan(1,4);
 
 
 const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces = 1) => {
@@ -53,20 +51,20 @@ const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces = 1) => {
   }
   throw new Error('Invalid Input Parameters');
 };
-generateRandomRange();
 
+createObject();
 
-const createObject = () => {
+function createObject() {
   const objects = [];
   for (let i = 1; i <= OFFERS_AMOUNT; i++) {
     const imgNum = i < 10 ? `0${i}` : i;
     const lat = generateRandomRange(LAT_RANGE[0], LAT_RANGE[1], LOCATION_NUMBER_OF_DIGITS);
     const lng = generateRandomRange(LNG_RANGE[0], LNG_RANGE[1], LOCATION_NUMBER_OF_DIGITS);
-    const typeRandomIndex = generateRandomRange(0, TYPES.length - 1);
-    const checkinRandomIndex = generateRandomRange(0, HOURS.length - 1);
-    const checkoutRandomIndex = generateRandomRange(0, HOURS.length - 1);
-    const RandomIndex = generateRandomRange(MIN_DESCRIPTION_WORDS, String.length - 1);
-    const obj= {
+    const typeRandomIndex = getRandomInRan(0, TYPES.length - 1);
+    const checkinRandomIndex = getRandomInRan(0, HOURS.length - 1);
+    const checkoutRandomIndex = getRandomInRan(0, HOURS.length - 1);
+    const description = getRandomInRan(0, DESCRIPTION.length - 1);
+    const obj = {
       author: {
         avatar: `img/avatars/user${imgNum}.png`
       },
@@ -79,47 +77,25 @@ const createObject = () => {
         guests: generateRandomRange(1, MAX_GUESTS),
         checkin: HOURS[checkinRandomIndex],
         checkout: HOURS[checkoutRandomIndex],
-        features: FEATURES,
-        description: (DESCRIPTION_STRING),
-        photos: PHOTOS,
+        features: randomizeArr(FEATURES),
+        description: randomizeArr(DESCRIPTION),
+        photos: randomizeArr(PHOTOS)
       },
-      location: {
+      location:{
         lat,
         lng
       }
     };
+
+    objects.push(obj);
   }
-  return createObject();
-};
-
-/*const similarObjects = Array.from({length:OFFERS_AMOUNT},createObject);
-window.console.log(similarObjects);*/
-
-
-
-//не могу понять как использовать Array и Shuffle
-
-function shuffleArray {
-  function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-  }
-
-  // Used like so
-  const arr = [2, 11, 37, 42];
-  shuffle(arr);
-  console.log(arr);
+  return objects;
 }
+
+function randomizeArr(arr){
+  const newArr = arr.slice(0);
+  Array(newArr);
+  const sliceRandomIndex = getRandomInRan(1, newArr.length-1);
+  return newArr.slice(0, sliceRandomIndex);
+}
+
