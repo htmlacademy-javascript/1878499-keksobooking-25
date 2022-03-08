@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*Структура каждого объекта должна быть следующей:
 author, объект — описывает автора. Содержит одно поле:
 avatar, строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
@@ -20,6 +21,7 @@ lat, число с плавающей точкой — широта, случа�
 lng, число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000.*/
 
 const OFFERS_AMOUNT = 10;
+const TITLE = ['Приветствие','приветствие 1','Приветствие 2'];
 const MAX_PRICE = 5000;
 const MAX_ROOMS = 5;
 const MAX_GUESTS = 5;
@@ -52,7 +54,6 @@ const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces = 1) => {
   throw new Error('Invalid Input Parameters');
 };
 
-createObject();
 
 function createObject() {
   const objects = [];
@@ -63,13 +64,12 @@ function createObject() {
     const typeRandomIndex = getRandomInRan(0, TYPES.length - 1);
     const checkinRandomIndex = getRandomInRan(0, HOURS.length - 1);
     const checkoutRandomIndex = getRandomInRan(0, HOURS.length - 1);
-    const description = getRandomInRan(0, DESCRIPTION.length - 1);
     const obj = {
       author: {
         avatar: `img/avatars/user${imgNum}.png`
       },
       offer: {
-        title: `Title ${i}`,
+        title: randomizeArr(TITLE),
         address: `${lat} ${lng}`,
         price: generateRandomRange(1, MAX_PRICE),
         type: TYPES[typeRandomIndex],
@@ -81,7 +81,7 @@ function createObject() {
         description: randomizeArr(DESCRIPTION),
         photos: randomizeArr(PHOTOS)
       },
-      location:{
+      location: {
         lat,
         lng
       }
@@ -90,11 +90,10 @@ function createObject() {
     objects.push(obj);
   }
   return objects;
-}
+};
 
-function randomizeArr(arr){
-  const newArr = arr.slice(0);
-  Array(newArr);
+function randomizeArr(newArr){
+
   const sliceRandomIndex = getRandomInRan(1, newArr.length-1);
   return newArr.slice(0, sliceRandomIndex);
 }
