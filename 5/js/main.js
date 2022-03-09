@@ -33,6 +33,12 @@ const generateRandomRange = (minNumber, maxNumber, numOfDecimalPlaces = 0) => {
   throw new Error('Invalid Input Parameters');
 };
 
+// Возвращает случайный элемент массива
+const randomizeArr = (arr) => {
+  const newArr = arr.slice(0);
+  const sliceRandomIndex = generateRandomRange(1, newArr.length-1);
+  return newArr.slice(0, sliceRandomIndex);
+};
 
 const createObject = () => {
   const objects = [];
@@ -69,15 +75,8 @@ const createObject = () => {
     objects.push(obj);
   }
   return objects;
-}
+};
 
-
-// Вовзращает случайный элемент массива
-  const randomizeArr = (arr) => {
-    const newArr = arr.slice(0);
-    const sliceRandomIndex = generateRandomRange(1, newArr.length-1);
-    return newArr.slice(0, sliceRandomIndex);
-  };
 createObject();
 
 
