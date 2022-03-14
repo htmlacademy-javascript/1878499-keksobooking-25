@@ -1,10 +1,11 @@
 import {getRandomInNumber, generateRandomRange, randomizeArr} from './utils.js';
 
-//интерфейс-функция которая пока будет заглушкой, вместо модуля работы с сервером
+//интерфейс-функция с помощью которой  мы получаем массив объектов(заглушка), вместо модуля работы с сервером
 
 /*импорты других модулей
 Вызовы общих функций
-Настройка скриптов*/
+Настройка скриптов
+*/
 
 
 const OFFERS_AMOUNT = 10;
@@ -56,4 +57,4 @@ const createObject = () => {
   return objects;
 };
 
-export {createObject, OFFERS_AMOUNT};
+export {createObject};
