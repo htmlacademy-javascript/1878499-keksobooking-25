@@ -1,3 +1,5 @@
 import {createObject} from './data.js';
 
-createObject();
+import {generatorAd} from './generating-similar-ads';
+generatorAd(createObject());
+
